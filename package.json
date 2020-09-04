@@ -2,6 +2,9 @@
   "name": "mobiquity-ergast",
   "version": "0.1.0",
   "private": true,
+  "description": "Mobiquity's code challenge for F1 Standings",
+  "repository": "https://github.com/ivaylopetrovdev/mobiquity-ergast.git",
+  "author": "Ivaylo Petrov, Senior Front-end React Developer",
   "dependencies": {
     "@apollo/client": "^3.1.4",
     "@material-ui/core": "^4.11.0",
