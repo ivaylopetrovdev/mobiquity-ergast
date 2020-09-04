@@ -46,7 +46,7 @@ All **CSS files** are written and validated as **CSS level 3** by official W3 CS
 
 #### Unit tests
 One of the more important things after clean and reusable code is having solid tests and coverage of the code. 
-This **application has 90%+ coverage** for most of the important areas.  
+This **application has 100% test coverage** for most of the important areas.  
 
 ---
 

@@ -33,4 +33,15 @@ describe('Test suits for Page', () => {
     const noDataElement = getByText(/No Data to be shown./i);
     expect(noDataElement).toBeInTheDocument();
   });
+
+  test('should render the error message', async () => {
+    const { getByText } = render(
+      <Page loading={false} noData={false} errorParam={true}>
+        <div>Test Content</div>
+      </Page>
+    );
+
+    const noDataElement = getByText(/Uppps! Something went wrong./i);
+    expect(noDataElement).toBeInTheDocument();
+  });
 });

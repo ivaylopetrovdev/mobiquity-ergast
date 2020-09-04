@@ -1,7 +1,7 @@
 import React from 'react';
 import {useQuery} from '@apollo/client';
 
-import {driverStandingsForSeason, racesBySeason} from "../../gql/queries/racesBySeason";
+import {GET_DRIVER_STANDINGS_SEASON, RACES_BY_SEASON} from "../../gql/queries/racesBySeason";
 import {RacesData, DriverStandingsData, RacesVars} from "../../utils/interfaces";
 import RacesList from "../../components/RacesList";
 import Page from "../../components/Page";
@@ -12,14 +12,14 @@ import Page from "../../components/Page";
  * - Visualizing the results in a table list
  */
 export default function Races({match}: any): JSX.Element {
-  const season = (match && match.params.season) || '';
-  const {loading, data} = useQuery<RacesData, RacesVars>(racesBySeason, {
+  const season = (match && match.params.season) || 2005;
+  const {loading, data, error} = useQuery<RacesData, RacesVars>(RACES_BY_SEASON, {
     variables: {
       season
     },
   });
 
-  const {loading: loadingChampion, data: dataChampion} = useQuery<DriverStandingsData, RacesVars>(driverStandingsForSeason, {
+  const {loading: loadingChampion, data: dataChampion} = useQuery<DriverStandingsData, RacesVars>(GET_DRIVER_STANDINGS_SEASON, {
     variables: {
       season
     },
@@ -29,7 +29,7 @@ export default function Races({match}: any): JSX.Element {
   const seasonChampionID = dataChampion && dataChampion.driverStandings.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.driverId
 
   return (
-    <Page loading={loading || loadingChampion} noData={!racesToRender}>
+    <Page loading={loading || loadingChampion} noData={!racesToRender} errorParam={error}>
       <div className={'paddingTop'}>{`${season} RACE RESULTS`}</div>
       <RacesList assets={racesToRender} seasonChampionID={seasonChampionID} />
     </Page>
